@@ -1,13 +1,22 @@
 'use strict';
 
+var bcrypt = require('bcryptjs');
+var salt = bcrypt.genSaltSync(10);
+var hash = bcrypt.hashSync('1234567989', salt);
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
         return queryInterface.bulkInsert('Users', [
             {
-                firstName: 'John',
-                lastName: 'Doe',
-                email: 'example@example.com',
+                email: 'fullstack@gmail.com',
+                password: hash,
+                firstName: 'Font end',
+                lastName: 'Back end',
+                address: 'Ha noi',
+                gender: false,
+                roleId: 'R3',
+                phonenumber: '0123456789',
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },
